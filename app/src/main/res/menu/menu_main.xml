@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mnuTaiKhoan"
+        android:title="Tài khoản">
+    </item>
+    <item android:id="@+id/mnuHuongDan"
+        android:title="Hướng dẫn">
+    </item>
+
+    <item android:id="@+id/mnuGioiThieu"
+        android:title="Giới thiệu">
+    </item>
+
+    <item android:id="@+id/mnuTuyChinh"
+        android:title="Tùy chỉnh">
+    </item>
+
+    <item android:id="@+id/mnuDangXuat"
+        android:title="Đăng xuất">
+    </item>
+</menu>
