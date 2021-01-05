@@ -45,4 +45,6 @@ dependencies {
         transitive = true
     }
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
+
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 }

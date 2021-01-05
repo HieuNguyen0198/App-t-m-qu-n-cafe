@@ -8,44 +8,48 @@
     tools:context=".app.MainActivity">
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chỉ đường" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Danh sách "/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yêu thích" />
-    </com.google.android.material.tabs.TabLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="277dp"
-            android:layout_height="54dp"
-            android:text="Định vị"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/startButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="68dp"
+            android:src="@drawable/ic_maneuver_turn_45"
+            mapbox:backgroundTint="@color/maboxBlue"
             mapbox:layout_constraintBottom_toBottomOf="parent"
             mapbox:layout_constraintEnd_toEndOf="parent"
-            mapbox:layout_constraintStart_toStartOf="parent" />
+            mapbox:tint="@android:color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="75dp"
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="68dp"
+            android:src="@drawable/icon"
+            mapbox:backgroundTint="@color/mapboxWhite"
+            mapbox:layout_constraintBottom_toBottomOf="parent"
+            mapbox:layout_constraintEnd_toEndOf="parent"
+            mapbox:tint="@android:color/black" />
+
+
+        <FrameLayout
+            android:id="@+id/simpleFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        </FrameLayout>
 
         <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            mapbox:layout_constraintBottom_toTopOf="@+id/startButton"
+            mapbox:layout_constraintBottom_toTopOf="@+id/startButton2"
             mapbox:layout_constraintStart_toStartOf="parent"
             mapbox:layout_constraintTop_toTopOf="parent"
             mapbox:mapbox_cameraTargetLat="10.84871842278394"
@@ -53,12 +57,48 @@
             mapbox:mapbox_cameraZoom="12"
             mapbox:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10">
 
-        </com.mapbox.mapboxsdk.maps.MapView>
+            <com.arlib.floatingsearchview.FloatingSearchView
+                android:id="@+id/floating_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                mapbox:floatingSearch_close_search_on_keyboard_dismiss="true"
+                mapbox:floatingSearch_leftActionMode="showHamburger"
+                mapbox:floatingSearch_searchBarMarginLeft="10dp"
+                mapbox:floatingSearch_searchBarMarginRight="10dp"
+                mapbox:floatingSearch_searchBarMarginTop="10dp"
+                mapbox:floatingSearch_searchHint="Nhập địa chỉ cần tìm"
+                mapbox:floatingSearch_showSearchKey="true"
+                mapbox:floatingSearch_suggestionsListAnimDuration="250"
+                tools:ignore="MissingConstraints" />
 
-        <FrameLayout
-            android:id="@+id/simpleFrameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        </com.mapbox.mapboxsdk.maps.MapView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saved" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Setting" />
+    </com.google.android.material.tabs.TabLayout>
 
 </LinearLayout>

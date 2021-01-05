@@ -3,6 +3,7 @@ package com.example.myapplication3.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.myapplication3.R;
 import com.example.myapplication3.model.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,12 +66,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationEngineListener,
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, LocationEngineListener,
         PermissionsListener, MapboxMap.OnMapClickListener {
 
     private MapView mapView;
     private MapboxMap map;
-    private Button startButton;
+    //private Button startButton;
+    private FloatingActionButton startButton;
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
     private LocationLayerPlugin locationLayerPlugin;
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //fragment = new fra1();
@@ -327,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     markerOptions.title(user.name);
                     markerOptions.position(new LatLng(user.getVidoD(), user.getKinhdoD()));
                     IconFactory iconFactory = IconFactory.getInstance(MainActivity.this);
-                    Icon icon = iconFactory.fromResource(R.drawable.cafe1);
+                    Icon icon = iconFactory.fromResource(R.drawable.cafe6);
                     markerOptions.icon(icon);
                     map.addMarker(markerOptions);
                 }
