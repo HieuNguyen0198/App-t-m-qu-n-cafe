@@ -3,12 +3,10 @@ package com.example.myapplication3.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,10 +20,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
 import com.example.myapplication3.R;
 import com.example.myapplication3.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -66,14 +63,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationEngineListener,
+public class FindWay extends AppCompatActivity implements OnMapReadyCallback, LocationEngineListener,
         PermissionsListener, MapboxMap.OnMapClickListener {
 
     private MapView mapView;
     private MapboxMap map;
+    private FloatingSearchView floatingSearchView1;
+    private FloatingSearchView floatingSearchView2;
     //private Button startButton;
     private FloatingActionButton startButton;
-    private FloatingActionButton startButton2;
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
     private LocationLayerPlugin locationLayerPlugin;
@@ -89,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private NavigationMapRoute navigationMapRoute;
     private static  final String TAG = "MainActivity";
 
-    TabLayout tabLayout;
-
     //firebase
     String TAG1 = "FIREBASE";
     ListView lvContact;
@@ -104,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.access_token));
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_find_way);
         getSupportActionBar().hide();
         addControls();
         fragment1 = findViewById(R.id.simpleFrameLayout);
@@ -117,36 +113,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //Fragment fragment = null;
-        switch (item.getItemId()){
-            case R.id.mnuHuongDan:
-                //Intent intent = new Intent(MainActivity.this, HuongDanActivity.class);
-                //startActivity(intent);
-                fragment = new fra1();
-                break;
-            case R.id.mnuGioiThieu:
-                fragment = new fra1();
-                break;
-            case R.id.mnuTaiKhoan:
-                fragment = new fra1();
-                break;
-            case R.id.mnuTuyChinh:
-                fragment = new fra1();
-                break;
-            case R.id.mnuDangXuat:
-                fragment = new fra1();
-                break;
-        }
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.simpleFrameLayout, fragment);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.commit();
-        return super.onOptionsItemSelected(item);
     }
 
 
@@ -163,79 +129,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 NavigationLauncher.startNavigation(MainActivity.this, options);*/
             }
         });
-
-        startButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FindWay.class);
-                startActivity(intent);
-            }
-        });
-
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                //fragment = new fra1();
-                switch (tab.getPosition()) {
-                    case 0:
-                        fragment1.setVisibility(View.GONE);
-                        startButton2.setVisibility(View.VISIBLE);
-                        startButton.setVisibility(View.VISIBLE);
-                        mapView.setVisibility(View.VISIBLE);
-                        fragment = new fra1();
-                        break;
-                    case 1:
-                        startButton.setVisibility(View.GONE);
-                        startButton2.setVisibility(View.GONE);
-                        fragment1.setVisibility(View.VISIBLE);
-                        mapView.setVisibility(View.GONE);
-                        fragment = new fra1();
-                        break;
-                    case 2:
-                        startButton.setVisibility(View.GONE);
-                        startButton2.setVisibility(View.GONE);
-                        fragment1.setVisibility(View.VISIBLE);
-                        mapView.setVisibility(View.GONE);
-                        fragment = new fra1();
-                        break;
-                    case 3:
-                        startButton.setVisibility(View.GONE);
-                        startButton2.setVisibility(View.GONE);
-                        fragment1.setVisibility(View.VISIBLE);
-                        mapView.setVisibility(View.GONE);
-                        fragment = new fra1();
-                        break;
-                }
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.simpleFrameLayout, fragment);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     private void addControls() {
         startButton = findViewById(R.id.startButton);
-        startButton2 = findViewById(R.id.startButton2);
-        mapView =  findViewById(R.id.mapView);
-        tabLayout = findViewById(R.id.tablayout);
-
-        //init();
-        //tabLayout.addTab(tabLayout.newTab().setText("Songs"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Albums"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Artists"));
+        mapView =  findViewById(R.id.mapView2);
+        floatingSearchView1 = findViewById(R.id.floating_search_view);
+        floatingSearchView2 = findViewById(R.id.floating_search_view2);
     }
 
     void init(){
@@ -255,17 +155,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         enableLocation();
         addFirebase();
 
-
-
         //lang nghe
         MyBroadcastReceiver myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(MyBroadcastReceiver.ACTION_FIRST_ACTION);
         registerReceiver(myBroadcastReceiver, intentFilter);
-        //
 
-        //currentMarker =  map.addMarker(new MarkerOptions().position(latLng))
-        //xu li su kien bam vo marker
         map.setOnMarkerClickListener(new MapboxMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
@@ -284,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             //xu li
                             if(marker.getPosition().getLatitude() == Double.parseDouble(user.getVido()) && marker.getPosition().getLongitude() == Double.parseDouble(user.getKinhdo())){
                                 //Đoạn này mở activity và truyền temp qua
-                                Intent intent = new Intent(MainActivity.this, item.class);
+                                Intent intent = new Intent(FindWay.this, item.class);
                                 intent.putExtra("name3", user.name);
                                 intent.putExtra("hinhanh3", user.hinhdanh);
                                 intent.putExtra("thongtin3", user.thongtin);
@@ -307,10 +202,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         //Lang nghe intent
-        //listenIntent();
+        listenIntent();
     }
 
-    /*private void listenIntent() {
+    private void listenIntent() {
         Intent intent = getIntent();
         User user = new User();
         user.setKinhdo(intent.getStringExtra("kinhdo2"));
@@ -321,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         currentPositon = Point.fromLngLat(Double.parseDouble(user.getKinhdo()), Double.parseDouble(user.getVido()));
         originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
         getRoute(originPosition, currentPositon);
-    }*/
+    }
 
     private void addFirebase() {
         //lấy đối tượng FirebaseDatabase
@@ -351,13 +246,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.title(user.name);
                     markerOptions.position(new LatLng(user.getVidoD(), user.getKinhdoD()));
-                    IconFactory iconFactory = IconFactory.getInstance(MainActivity.this);
+                    IconFactory iconFactory = IconFactory.getInstance(FindWay.this);
                     Icon icon = iconFactory.fromResource(R.drawable.cafe6);
                     markerOptions.icon(icon);
                     map.addMarker(markerOptions);
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
@@ -376,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            //Kiểm tra Action của Intent nhận được có tên first-broadcastintent
+            //Kiểm tra Action của Intent nhận được có tên irst-broadcastintent
             if (intent.getAction().equals(MyBroadcastReceiver.ACTION_FIRST_ACTION)) {
                 //Đọc dữ liệu trong Intent
                 String d = intent.getStringExtra("kinhdo");
@@ -590,13 +484,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapView.onDestroy();
     }
 }
-
-
-
-
-
-
-
 
 
 

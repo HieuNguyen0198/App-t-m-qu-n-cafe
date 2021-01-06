@@ -46,7 +46,7 @@ public class item2 extends FragmentActivity {
         {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(item2.this, MainActivity.class);
+                Intent intent = new Intent(item2.this, FindWay.class);
                 intent.putExtra("kinhdo2", kd);
                 intent.putExtra("vido2", vd);
                 intent.putExtra("hinhanh2", img);

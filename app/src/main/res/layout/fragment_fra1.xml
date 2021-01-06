@@ -9,9 +9,18 @@
     android:paddingBottom="8dp">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Danh sách"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/black"></TextView>
+
     <ListView
         android:id="@+id/lvHocSinh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:listSelector="@android:color/holo_orange_dark" />
+
 </LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".app.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="68dp"
+            android:src="@drawable/icon"
+            mapbox:backgroundTint="@color/mapboxWhite"
+            mapbox:layout_constraintBottom_toBottomOf="parent"
+            mapbox:layout_constraintEnd_toEndOf="parent"
+            mapbox:tint="@android:color/black" />
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            mapbox:layout_constraintStart_toStartOf="parent"
+            mapbox:layout_constraintTop_toTopOf="parent"
+            mapbox:mapbox_cameraTargetLat="10.84871842278394"
+            mapbox:mapbox_cameraTargetLng="106.77358599778219"
+            mapbox:mapbox_cameraZoom="12"
+            mapbox:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10">
+
+            <com.arlib.floatingsearchview.FloatingSearchView
+                android:id="@+id/floating_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                mapbox:floatingSearch_close_search_on_keyboard_dismiss="true"
+                mapbox:floatingSearch_leftActionMode="showHamburger"
+                mapbox:floatingSearch_searchBarMarginLeft="10dp"
+                mapbox:floatingSearch_searchBarMarginRight="10dp"
+                mapbox:floatingSearch_searchBarMarginTop="10dp"
+                mapbox:floatingSearch_searchInputTextSize="6dp"
+                mapbox:floatingSearch_searchHint="Your location"
+                mapbox:floatingSearch_showSearchKey="true"
+                mapbox:floatingSearch_suggestionsListAnimDuration="250"
+                tools:ignore="MissingConstraints" />
+
+            <com.arlib.floatingsearchview.FloatingSearchView
+                android:id="@+id/floating_search_view2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="60dp"
+                mapbox:floatingSearch_searchInputTextSize="6dp"
+                mapbox:floatingSearch_close_search_on_keyboard_dismiss="true"
+                mapbox:floatingSearch_leftActionMode="showHamburger"
+                mapbox:floatingSearch_searchBarMarginLeft="10dp"
+                mapbox:floatingSearch_searchBarMarginRight="10dp"
+                mapbox:floatingSearch_searchBarMarginTop="10dp"
+                mapbox:floatingSearch_searchHint="Nhập địa chỉ đến"
+                mapbox:floatingSearch_showSearchKey="true"
+                mapbox:floatingSearch_suggestionsListAnimDuration="250"
+                tools:ignore="MissingConstraints" />
+
+        </com.mapbox.mapboxsdk.maps.MapView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
