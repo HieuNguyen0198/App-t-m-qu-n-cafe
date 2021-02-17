@@ -27,7 +27,9 @@
             android:name=".app.item2"
             android:label="@string/title_activity_item2"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".app.MainActivity"></activity>
+        <activity android:name=".app.MainActivity">
+
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

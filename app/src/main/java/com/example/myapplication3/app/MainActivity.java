@@ -13,6 +13,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -27,6 +28,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myapplication3.R;
+import com.example.myapplication3.model.Account;
 import com.example.myapplication3.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -99,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     //frament
     fra1 fragment;
     View fragment1;
+
+    //Account
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,8 +260,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         enableLocation();
         addFirebase();
 
-
-
         //lang nghe
         MyBroadcastReceiver myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -307,21 +310,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         //Lang nghe intent
-        //listenIntent();
+        listenIntent();
+        Toast.makeText(MainActivity.this, username, Toast.LENGTH_LONG).show();
     }
 
-    /*private void listenIntent() {
+    private void listenIntent() {
         Intent intent = getIntent();
-        User user = new User();
-        user.setKinhdo(intent.getStringExtra("kinhdo2"));
-        user.setVido(intent.getStringExtra("vido2"));
-        user.setHinhdanh(intent.getStringExtra("hinhanh2"));
-        user.setThongtin(intent.getStringExtra("thongtin2"));
-        user.setName(intent.getStringExtra("name2"));
-        currentPositon = Point.fromLngLat(Double.parseDouble(user.getKinhdo()), Double.parseDouble(user.getVido()));
-        originPosition = Point.fromLngLat(originLocation.getLongitude(), originLocation.getLatitude());
-        getRoute(originPosition, currentPositon);
-    }*/
+        username = intent.getStringExtra("username");
+    }
 
     private void addFirebase() {
         //lấy đối tượng FirebaseDatabase

@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,8 +70,7 @@ public class Login extends Activity {
                  {
                      if (accounts.get(i).username.equals(txtUserName.getText().toString()) && accounts.get(i).password.equals(txtPassword.getText().toString())) {
                          Intent intent = new Intent(Login.this, MainActivity.class);
-                         intent.putExtra("username", txtUserName.getText().toString());
-                         intent.putExtra("password", txtPassword.getText().toString());
+                         intent.putExtra("username", accounts.get(i).username);
                          Toast.makeText(Login.this, "Chào mừng" + " " + accounts.get(i).username + " quay trở lại", Toast.LENGTH_LONG).show();
                          startActivity(intent);
                          finish();
